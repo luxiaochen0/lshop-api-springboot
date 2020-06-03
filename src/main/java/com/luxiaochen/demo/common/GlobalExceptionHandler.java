@@ -1,0 +1,16 @@
+package com.luxiaochen.demo.common;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+
+@ControllerAdvice
+@ResponseBody
+public class GlobalExceptionHandler {
+    @ExceptionHandler(CustomException.class)
+    public ResponseData jsonExceptionHandler(HttpServletRequest request, CustomException e) {
+        return new ResponseData(e.getCode(),e.getMessage(),"");
+    }
+}

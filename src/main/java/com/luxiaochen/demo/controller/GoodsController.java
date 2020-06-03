@@ -1,0 +1,83 @@
+package com.luxiaochen.demo.controller;
+
+import com.luxiaochen.demo.common.CustomException;
+import com.luxiaochen.demo.dao.GoodsMapper;
+import com.luxiaochen.demo.entity.Goods;
+import com.luxiaochen.demo.entity.GoodsExample;
+import com.luxiaochen.demo.model.Goods1;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+@RequestMapping("/goods")
+public class GoodsController {
+
+    @Autowired
+    private GoodsMapper goodsMapper;
+
+    @RequestMapping("/test")
+    public List Test() {
+        //throw new BadRequestException("xxx");
+        Goods1 goods=new Goods1(1,"苹果");
+        List<Goods1> list=new ArrayList<>();
+        list.add(new Goods1(1,"苹果"));
+        list.add(new Goods1(2,"梨11313"));
+        return list;
+    }
+    @RequestMapping("/test2")
+    public String Test2() {
+        throw new CustomException(400,"参数错误");
+        //return "a";
+    }
+
+    @RequestMapping("")
+    public List<Goods> index(){
+        List<Goods> list=goodsMapper.selectByExample(new GoodsExample());
+        return list;
+    }
+
+    @RequestMapping("/{id}")
+    public Goods detail(@PathVariable int id){
+        Goods goods=goodsMapper.selectByPrimaryKey(id);
+        return goods;
+    }
+
+    @RequestMapping("/add")
+    public int add(){
+        Goods goods = new Goods();
+        goods.setCateId(1);
+        goods.setShopId(1);
+        goods.setName("aaa");
+        goods.setImage("https://");
+        goods.setTitle("-");
+        goods.setContent("sss");
+        goods.setStock(999);
+        goods.setSale(1);
+        goods.setMarketPrice(new BigDecimal(500.01));
+        goods.setShopPrice(new BigDecimal(100.02));
+        int res=goodsMapper.insertSelective(goods);
+        return res;
+    }
+
+    @RequestMapping("/{id}/edit")
+    public int edit(@PathVariable int id){
+        Goods goods = new Goods();
+        goods.setId(id);
+        goods.setMarketPrice(new BigDecimal(500.41));
+        goods.setShopPrice(new BigDecimal(100.42));
+        int res=goodsMapper.updateByPrimaryKeySelective(goods);
+        return res;
+    }
+
+    @RequestMapping("/{id}/delete")
+    public int delete(@PathVariable int id){
+        int res=goodsMapper.deleteByPrimaryKey(id);
+        return res;
+    }
+}
