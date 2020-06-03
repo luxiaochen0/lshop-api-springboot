@@ -58,7 +58,7 @@ public class GoodsController {
         goods.setTitle("-");
         goods.setContent("sss");
         goods.setStock(999);
-        goods.setSale(1);
+//        goods.setSale(1);
         goods.setMarketPrice(new BigDecimal(500.01));
         goods.setShopPrice(new BigDecimal(100.02));
         int res=goodsMapper.insertSelective(goods);
