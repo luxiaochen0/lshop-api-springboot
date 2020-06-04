@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.luxiaochen.demo.common.CustomException;
+import com.luxiaochen.demo.common.PageData;
 import com.luxiaochen.demo.dao.GoodsMapper;
 import com.luxiaochen.demo.entity.Goods;
 import com.luxiaochen.demo.entity.GoodsExample;
@@ -42,15 +43,15 @@ public class GoodsController {
     }
 
     @RequestMapping("")
-    public List<Goods> index(@RequestParam(value="page_no",required = false, defaultValue = "1") int page_no,@RequestParam(value="page_size",required = false, defaultValue = "10") int page_size){
+    public PageData index(@RequestParam(value="page_no",required = false, defaultValue = "1") int page_no,@RequestParam(value="page_size",required = false, defaultValue = "10") int page_size){
         GoodsExample example=new GoodsExample();
         //example.createCriteria().andIdEqualTo(1);
-        Page<Goods> page = PageHelper.startPage(page_no, page_size);
+        Page<Goods> page = PageHelper.startPage(page_no, page_size,true);
         List<Goods> list  = goodsMapper.selectByExample(example);
 
-        //System.out.println(page);
+        PageData pageData=new PageData(page.getPageNum(),page.getPageNum(),page.getPages(), (int) page.getTotal(),list);
 
-        return list;
+        return pageData;
     }
 
     @RequestMapping("/{id}")
