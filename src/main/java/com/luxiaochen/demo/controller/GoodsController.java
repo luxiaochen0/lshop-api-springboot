@@ -9,11 +9,13 @@ import com.luxiaochen.demo.entity.Goods;
 import com.luxiaochen.demo.entity.GoodsExample;
 import com.luxiaochen.demo.model.Goods1;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ public class GoodsController {
 
     @Autowired
     private GoodsMapper goodsMapper;
+    @Resource
+    private RedisTemplate<String,String> redisTemplate;
 
     @RequestMapping("/test")
     public List Test() {
@@ -89,5 +93,12 @@ public class GoodsController {
     public int delete(@PathVariable int id){
         int res=goodsMapper.deleteByPrimaryKey(id);
         return res;
+    }
+
+    @RequestMapping("/redis")
+    public String re(){
+        redisTemplate.opsForValue().set("key", "value");
+
+        return "redis";
     }
 }
