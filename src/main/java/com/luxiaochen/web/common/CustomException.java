@@ -1,4 +1,4 @@
-package com.luxiaochen.demo.common;
+package com.luxiaochen.web.common;
 
 /**
  * 自定义异常处理

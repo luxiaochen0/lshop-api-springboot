@@ -1,4 +1,4 @@
-package com.luxiaochen.demo.common;
+package com.luxiaochen.web.common;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

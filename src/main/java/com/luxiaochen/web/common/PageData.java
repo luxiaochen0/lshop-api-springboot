@@ -1,4 +1,4 @@
-package com.luxiaochen.demo.common;
+package com.luxiaochen.web.common;
 
 public class PageData {
 
