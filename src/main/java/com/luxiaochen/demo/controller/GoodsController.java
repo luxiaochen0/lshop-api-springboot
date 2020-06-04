@@ -1,13 +1,18 @@
 package com.luxiaochen.demo.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.luxiaochen.demo.common.CustomException;
 import com.luxiaochen.demo.dao.GoodsMapper;
 import com.luxiaochen.demo.entity.Goods;
 import com.luxiaochen.demo.entity.GoodsExample;
 import com.luxiaochen.demo.model.Goods1;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -37,8 +42,14 @@ public class GoodsController {
     }
 
     @RequestMapping("")
-    public List<Goods> index(){
-        List<Goods> list=goodsMapper.selectByExample(new GoodsExample());
+    public List<Goods> index(@RequestParam(value="page_no",required = false, defaultValue = "1") int page_no,@RequestParam(value="page_size",required = false, defaultValue = "10") int page_size){
+        GoodsExample example=new GoodsExample();
+        //example.createCriteria().andIdEqualTo(1);
+        Page<Goods> page = PageHelper.startPage(page_no, page_size);
+        List<Goods> list  = goodsMapper.selectByExample(example);
+
+        //System.out.println(page);
+
         return list;
     }
 

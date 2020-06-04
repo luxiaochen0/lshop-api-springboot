@@ -23,6 +23,17 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    //implementation 'bouncycastle:bcprov-jdk16:140'
+    //分页
+    implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.13'
+    //日志
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.3.0.RELEASE'
+}
+
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
 test {
