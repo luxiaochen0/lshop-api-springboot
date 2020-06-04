@@ -73,8 +73,8 @@ public class GoodsController {
         goods.setContent("sss");
         goods.setStock(999);
 //        goods.setSale(1);
-        goods.setMarketPrice(new BigDecimal(500.01));
-        goods.setShopPrice(new BigDecimal(100.02));
+        goods.setMarketPrice(new BigDecimal("500.01"));
+        goods.setShopPrice(new BigDecimal("100.02"));
         int res=goodsMapper.insertSelective(goods);
         return res;
     }
@@ -83,8 +83,8 @@ public class GoodsController {
     public int edit(@PathVariable int id){
         Goods goods = new Goods();
         goods.setId(id);
-        goods.setMarketPrice(new BigDecimal(500.41));
-        goods.setShopPrice(new BigDecimal(100.42));
+        goods.setMarketPrice(new BigDecimal("500.41"));
+        goods.setShopPrice(new BigDecimal("100.42"));
         int res=goodsMapper.updateByPrimaryKeySelective(goods);
         return res;
     }
