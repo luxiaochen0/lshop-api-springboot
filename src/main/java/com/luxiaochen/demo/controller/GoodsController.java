@@ -98,7 +98,7 @@ public class GoodsController {
     @RequestMapping("/redis")
     public String re(){
         redisTemplate.opsForValue().set("key", "value");
-
+        System.out.println(redisTemplate.getConnectionFactory());
         return "redis";
     }
 }
