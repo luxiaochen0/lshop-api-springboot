@@ -2,6 +2,7 @@ package com.luxiaochen.lshop.api.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.luxiaochen.lshop.config.ApiRestController;
 import com.luxiaochen.web.common.CustomException;
 import com.luxiaochen.web.common.PageData;
 import com.luxiaochen.lshop.dao.GoodsMapper;
@@ -21,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("${params.api.url.prefix}/goods")
+@RequestMapping("/goods")
+@ApiRestController()
 public class GoodsController {
 
     @Autowired
@@ -52,7 +54,6 @@ public class GoodsController {
         List<Goods> list  = goodsMapper.selectByExample(example);
 
         PageData pageData=new PageData(page.getPageNum(),page.getPageNum(),page.getPages(), (int) page.getTotal(),list);
-
         return pageData;
     }
 
