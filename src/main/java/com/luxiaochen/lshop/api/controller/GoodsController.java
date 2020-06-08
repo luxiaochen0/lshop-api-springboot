@@ -31,21 +31,6 @@ public class GoodsController {
     @Resource
     private RedisTemplate<String,String> redisTemplate;
 
-    @RequestMapping("/test")
-    public List Test() {
-        //throw new BadRequestException("xxx");
-        Goods1 goods=new Goods1(1,"苹果");
-        List<Goods1> list=new ArrayList<>();
-        list.add(new Goods1(1,"苹果"));
-        list.add(new Goods1(2,"梨11313"));
-        return list;
-    }
-    @RequestMapping("/test2")
-    public String Test2() {
-        throw new CustomException(400,"参数错误");
-        //return "a";
-    }
-
     @RequestMapping("")
     public PageData index(@RequestParam(value="page_no",required = false, defaultValue = "1") int page_no,@RequestParam(value="page_size",required = false, defaultValue = "10") int page_size){
         GoodsExample example=new GoodsExample();
@@ -96,10 +81,4 @@ public class GoodsController {
         return res;
     }
 
-    @RequestMapping("/redis")
-    public String re(){
-        redisTemplate.opsForValue().set("key", "value");
-        System.out.println(redisTemplate.getConnectionFactory());
-        return "redis";
-    }
 }
