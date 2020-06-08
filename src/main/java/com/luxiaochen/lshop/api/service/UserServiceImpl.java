@@ -10,6 +10,7 @@ public class UserServiceImpl implements IUserService {
     public String login() {
         String token="";
         long time=Calendar.getInstance().getTimeInMillis();
+        System.out.println(time);
         token= JWT.create().withAudience(Long.toString(time))
                 .sign(Algorithm.HMAC256("xxx"));
         return token;

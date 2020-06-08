@@ -42,7 +42,7 @@ public class TestController {
     }
     @RequestMapping("/test2")
     public String Test2() {
-        throw new CustomException(400,"参数错误");
+        throw new CustomException(400,"参数错误111111111");
         //return "a";
     }
 
@@ -53,11 +53,4 @@ public class TestController {
         return "redis";
     }
 
-    @RequestMapping("/jwt")
-    public String jwt(){
-
-
-
-        return "redis";
-    }
 }
