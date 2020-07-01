@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.luxiaochen.lshop","com.luxiaochen.web"})
 @MapperScan("com.luxiaochen.lshop.dao")
 public class LshopApplication {
 

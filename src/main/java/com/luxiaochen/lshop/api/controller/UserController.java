@@ -22,4 +22,16 @@ public class UserController {
         String token=userService.login();
         return token;
     }
+
+    @RequestMapping("/create")
+    public String create(){
+        String token=userService.create();
+        return token;
+    }
+
+    @RequestMapping("/verify")
+    public String verify(){
+        String token=userService.verify();
+        return token;
+    }
 }

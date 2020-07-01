@@ -27,7 +27,7 @@ dependencies {
     //jwt
     implementation 'com.auth0:java-jwt:3.10.3'
     //shiro
-    implementation 'org.apache.shiro:shiro-spring:1.5.3'
+    //implementation 'org.apache.shiro:shiro-spring-boot-web-starter:1.5.3'
 
     //加密
     //implementation 'bouncycastle:bcprov-jdk16:140'
